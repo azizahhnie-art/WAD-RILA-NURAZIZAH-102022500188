@@ -10,28 +10,18 @@
 <title>Form Instruktur — Modul Instruktur & Coach</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
 
-<div class="topbar">
-  <div class="topbar-inner">
-    <div class="brand">
-      <div class="mark">Instruktur<span>&Coach</span></div>
-    </div>
-    <nav class="tabs">
-      <a href="{{ route('instruktur.index') }}">Daftar Instruktur</a>
-      <a href="{{ route('instruktur.create') }}" class="active">Tambah Instruktur</a>
-    </nav>
-  </div>
-</div>
+@include('partials.navbar', ['active' => $isEdit ? 'index' : 'create'])
 
-<main>
-  <div class="page-head">
+<main class="main-content">
+  <div class="page-header">
     <div>
-      <h1 class="page-title">{{ $isEdit ? 'Edit Data Instruktur' : 'Tambah Instruktur Baru' }}</h1>
-      <p class="page-desc">
+      <div class="breadcrumb">Instruktur & Coach &rsaquo; {{ $isEdit ? 'Edit' : 'Tambah' }}</div>
+      <h1>{{ $isEdit ? 'Edit Data Instruktur' : 'Tambah Instruktur Baru' }}</h1>
+      <p>
         {{ $isEdit ? 'Memperbarui data untuk ' . $instruktur->nama . '.' : 'Lengkapi data pelatih mitra untuk didaftarkan ke sistem venue.' }}
       </p>
     </div>
@@ -121,7 +111,7 @@
       <button type="submit" class="btn btn-primary">{{ $isEdit ? 'Perbarui Data' : 'Simpan Data' }}</button>
       <a href="{{ route('instruktur.index') }}" class="btn btn-ghost">Batal</a>
     </div>
-    <p class="form-note">Data disimpan di database MySQL (venue_db).</p>
+    
   </form>
 </main>
 
